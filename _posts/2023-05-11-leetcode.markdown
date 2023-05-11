@@ -41,7 +41,7 @@ int removeElement(vector<int>& nums, int val) {
 }
 ```
 
-这段代码触及到了我的知识盲区，不知道如何去接受这样的新事物，我只能说，我尽力去了解它
+
 
 # 977.有序数组的平方
 
@@ -107,6 +107,57 @@ public:
 
 用sort函数
 
-209.长度最小的子数组
+# 209.长度最小的子数组
 
 在数组中找到  数组连续元素之和  为大于或等于target的最小子数组
+
+暴力破解法：
+
+```
+class Solution {
+public:
+     int minSubArrayLen(int target, vector<int>& a) {
+        int length=0;
+        int i;
+        int add=0;
+        int size=sizeof(a)/sizeof(int);
+        
+        for(i=0;i<size;i++){
+            while(add<target){
+                add=a[i]+a[i+1];
+                length++;
+            } 
+        }
+        return length;
+    }
+};
+```
+
+滑动窗口法：
+
+```
+class Solution {
+public:
+    int minSubArrayLen(int s, vector<int>& nums) {
+        int result = INT32_MAX;
+        int sum = 0; // 滑动窗口数值之和
+        int i = 0; // 滑动窗口起始位置
+        int subLength = 0; // 滑动窗口的长度
+        
+        for (int j = 0; j < nums.size(); j++) {
+            sum += nums[j];
+            // 注意这里使用while，每次更新 i（起始位置），并不断比较子序列是否符合条件
+            
+            while (sum >= s) {
+                subLength = (j - i + 1); // 取子序列的长度
+                result = result < subLength ? result : subLength;
+                sum -= nums[i++]; // 这里体现出滑动窗口的精髓之处，不断变更i（子序列的起始位置）
+            }
+            
+        }
+        
+        // 如果result没有被赋值的话，就返回0，说明没有符合条件的子序列
+        return result == INT32_MAX ? 0 : result;
+    }
+};
+```
