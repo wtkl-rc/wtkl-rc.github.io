@@ -113,6 +113,8 @@ public:
 
 暴力破解法：
 
+不能用，力扣超时
+
 ```
 class Solution {
 public:
@@ -135,29 +137,50 @@ public:
 
 滑动窗口法：
 
+
+
+问题：怎么判断子序列长度是最小的
+
+# 59.螺旋矩阵
+
+分单双数
+
+n=7为单数：
+
+确定从外圈从左到右，上到下
+
+一共有n=7则4圈    n=5则3圈   n=3则2圈
+
+四个for循环，一个for循环循环n-1次，左闭右开
+
+start确定开始位置，第一圈开始位置为0，第二圈开始为1第三圈开始为2
+
 ```
-class Solution {
-public:
-    int minSubArrayLen(int s, vector<int>& nums) {
-        int result = INT32_MAX;
-        int sum = 0; // 滑动窗口数值之和
-        int i = 0; // 滑动窗口起始位置
-        int subLength = 0; // 滑动窗口的长度
-        
-        for (int j = 0; j < nums.size(); j++) {
-            sum += nums[j];
-            // 注意这里使用while，每次更新 i（起始位置），并不断比较子序列是否符合条件
-            
-            while (sum >= s) {
-                subLength = (j - i + 1); // 取子序列的长度
-                result = result < subLength ? result : subLength;
-                sum -= nums[i++]; // 这里体现出滑动窗口的精髓之处，不断变更i（子序列的起始位置）
-            }
-            
-        }
-        
-        // 如果result没有被赋值的话，就返回0，说明没有符合条件的子序列
-        return result == INT32_MAX ? 0 : result;
-    }
-};
+res[][]值的确定
+第一圈上行res[0][0]，res[0][1]，res[0][2]，res[0][3]
+第二圈上行res[1][1],res[1][2],res[1][3],res[1][4]
 ```
+
+双数：
+
+n=6则3圈  n=4则2圈  
+
+一个for循环n-1 左闭右开
+
+```
+int loop=n/2//先确定单双数，确定循环几圈
+while(loop--){  //loop不为0的时候循环
+	for(){       
+	}
+}
+
+```
+
+重最外围开始考虑，如n的值可以为什么，单双数
+
+建立模型，开始模拟，接着分析数据，确定关系
+
+
+
+
+
