@@ -2,8 +2,10 @@
 layout: post
 title:  "力扣"
 date:   2023-05-11 08:54:15 +0800
-categories: jekyll leetcode
+categories: jekyll leetcode 
 ---
+
+# 数组
 
 #  27.移除元素
 
@@ -180,7 +182,52 @@ while(loop--){  //loop不为0的时候循环
 
 建立模型，开始模拟，接着分析数据，确定关系
 
+# 链表
 
+# 203.移除链表元素
+
+注意此题的头结点，头节点也有值。要先从头结点开始判断，再判断后面结点的值，同时还要对最后一个结点处理。
+
+```
+class Solution {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+        
+            while(head!=NULL&&head->val==val){        //判断头结点是否为val 	
+                if(head->next==NULL){				//如果只有头结点一个结点，直接将头节点指向null
+                    head=NULL;
+                }else{							//否则指向头结点的下一个结点
+                    head=head->next;
+                }      
+            }
+        
+       
+        if(head!=NULL&&head->next!=NULL){
+            ListNode* p=head;			//定义两个指针，同时从头结点开始
+            ListNode* before=head;			
+            
+            while(p!=NULL&&p->next!=NULL){  //判断指针是否为null			
+                if(p->val==val){          //如果相等的话，就要进行交换
+                    before->next=p->next;		//将前面的指针的next域指向后继结点
+                    p=p->next;
+                }
+
+                if(p->val!=val){		//如果后继结点还是等于val，那么b还是指向原来的结点
+                    before=p;
+                    p=p->next;
+                }
+
+            }
+
+            if(p!=NULL&&p->val==val){          //最后一个结点，如果相等的话，就要进行交换
+                    before->next=NULL;
+                }
+        }
+     return head;
+    }
+};
+
+```
 
 
 
