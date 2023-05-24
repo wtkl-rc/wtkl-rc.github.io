@@ -129,3 +129,13 @@ const  传入使用
 
 
 
+差不多就是初始化的意思
+
+```
+ListNode() : val(0), next(nullptr) {}
+等效于下面的代码
+ListNode( ) {    val = 0;    next = nullptr; }
+```
+
+
+

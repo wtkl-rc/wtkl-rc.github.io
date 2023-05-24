@@ -229,5 +229,163 @@ public:
 
 ```
 
+# 707.设计链表
 
+```
+class MyLinkedList {
+public:
+
+    struct LinkedList{
+        int val;
+        LinkedList *next;
+    };
+
+
+    MyLinkedList(){
+        _head=new LinkedList; 
+        _head=NULL;
+        _size=1;
+    }
+    
+    int get(int index) { 
+            LinkedList *p;
+        p=_head;
+
+        if(index>_size||index<0){
+            return -1;
+        }
+        else{
+            int i=0;
+            while(i!=index&&p!=NULL){
+                p=p->next;
+                i++;
+            }
+        }
+        int val=NULL;
+        if(p!=NULL&&p->val!=NULL){
+            val=p->val;
+        }
+        return val;
+    }
+    
+    void addAtHead(int val) {
+        LinkedList* p=new LinkedList;
+        p->val=val;
+        p->next=_head;
+        _head=p;
+        _size++;
+    }
+    
+    void addAtTail(int val) {
+        LinkedList* q=new LinkedList;
+        q->next=NULL;
+        q->val=val;
+        LinkedList* p=_head;
+        int i=0;
+        while(p!=NULL&&p!=NULL&&i!=_size){
+            p=p->next;
+            i++;
+        }
+        if(p!=NULL&&p->next!=NULL){
+            p->next=q;
+        }
+        
+        _size++;
+    }
+    
+    void addAtIndex(int index, int val) {
+        if(index>_size&&index<0){        //判断index是否合法
+            exit;
+        }
+
+        LinkedList* p=_head;
+        int i=0;
+        while(i!=index-1&&p!=NULL&&p->next!=NULL){   //找到index-1的结点
+            p=p->next;
+            i++;
+        }
+
+        if(index+1==_size){
+            LinkedList* nw=new LinkedList;
+            nw->val=val;
+            nw->next=NULL;
+            p->next=nw;
+            _size++;   
+        }else{
+            LinkedList* nw=new LinkedList;      //新建一个结点插入
+            nw->val=val;
+            nw->next=p->next;
+            p->next=nw; 
+            _size++;
+        }
+    }
+    
+    void deleteAtIndex(int index) {
+        if(index>_size&&index<0){
+            exit;
+        }
+        
+        LinkedList* back=_head;
+        int i=0;
+        while(i!=index-1&& back!=NULL&& back->next!=NULL){   //找到index-1的结点
+            back=back->next;
+            i++;
+        }
+        LinkedList* middle=back->next;
+      
+        back->next=middle->next;
+        _size--;
+
+    }
+
+    private:
+        LinkedList* _head;   //头指针
+        int _size;           //长度
+};
+```
+
+
+
+# 24.两两交换链表中的节点
+
+```
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+        if(head==NULL){      //如果head为空
+            return head;
+        }
+
+        ListNode* before;    //设置两个指针指向head
+        ListNode* p;
+        before=head;
+        p=head;
+        if(p!=NULL&&p->next!=NULL){
+            p=p->next;
+        }
+       
+        while(before!=NULL&&before->next!=NULL){
+
+            int mid=before->val;
+            before->val=p->val;
+            p->val=mid;
+            
+            if(p->next!=NULL){
+                before=p->next;
+            }else{
+                break;
+            }
+
+            if(before->next!=NULL){
+                p=before->next;
+            }else{
+                break;
+            }
+        }
+
+
+        return head;
+    }
+};
+```
 

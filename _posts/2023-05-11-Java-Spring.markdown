@@ -206,25 +206,14 @@ implement后面加上 initializingbean 和disposablebean
 
 destory和afterpropertiesset方法
 
+# 依赖注入方式
 
+setter注入和构造器注入
 
-p13
+setter：简单类型，引用类型
 
+构造器注入：简单类型  引用类型
 
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
 
 
 
