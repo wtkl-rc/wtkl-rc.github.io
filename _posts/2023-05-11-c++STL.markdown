@@ -1,0 +1,38 @@
+---
+layout: post
+title:  "c++学习笔记"
+date:   2023-05-11 08:54:15 +0800
+categories: jekyll c++
+---
+
+
+
+# sort
+
+\#include < algorithm >
+
+sort (start, end, cmp)
+
+start表示排序数组的起始位置
+
+end表示数组结束地址的下一位
+
+cmp用于规定排序的方法，默认升序
+
+```
+sort(nums.begin(), nums.end()); // 快速排序nums是个vector
+```
+
+# vector
+
+```
+vector<int> a;
+a.push_back(1);  //向容器末尾添加一个数1
+```
+
+```
+//vector<vector<int> > a(row, vector<int>(col, 0)); vector<vector<int> > a(2, vector<int>(3, 0));  //0的意思是初始化为0
+int row=a.size();   //行数
+int col=a[0].size();  //列数    为什么是.size就是行数
+```
+
